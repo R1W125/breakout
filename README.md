@@ -28,7 +28,7 @@ and the JS Script Relation
 ```
 <script type="text/javascript" src="js/game-circ.js"></script>
 ```
-Also contains a <canvas>, simple things!
+Also contains a canvas tag, simple things!
 ```
 <canvas id="canvas"></canvas>
 ```
