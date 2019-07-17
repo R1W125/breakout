@@ -60,5 +60,3 @@ This contains all of the game functions, the code has comments, so you can under
 ## Questions
 
 Leave a Comment in the project or make your version!
-
-Thanks to *Mozilla Developers* to teach me how to do this game and *StackOverflow* to help making it better!
