@@ -39,6 +39,7 @@
 
   //variable de puntuación
   var score = 0;
+  var highScore = localStorage.getItem("highScore") || 0;
 
   //Bucle para crear bloques
   var bricks = [];
@@ -95,6 +96,10 @@
                     score++;
                     //Si golpeas todas, un mensaje de victoria
                     if(score == brickRowCount*brickColumnCount) {
+                      if (score > highScore) {
+                        highScore = score;
+                        localStorage.setItem("highScore", highScore);
+                      }
                       drawScore.fillStyle = "#FFFFFF";
                       ctx.textAlign = "center";
                       ctx.font = "30px Arial";
@@ -113,10 +118,10 @@
   
   //Función para mostrar la puntuación en Canvas
   function drawScore() {
-    ctx.font = "30px Arial";
-    ctx.fillStyle = "#000000";
-    ctx.textAlign = "end"; 
-    ctx.fillText("Puntuación: "+score, canvas.width/2, canvas.height/2);
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "#000000";
+  ctx.textAlign = "left";
+  ctx.fillText("Score: " + score + " | High Score " + highScore, 10, 20);
   }
 
   //Función para dibujar la bola en Canvas
@@ -179,15 +184,18 @@
             dy = -dy;
         }
         else {
-            //Mensaje de GameOver después de los límites de lo Canvas
-            ctx.textAlign = "left"; 
-            ctx.font = "30px Arial";
-            ctx.fillStyle = "#000000";
-            ctx.fillText(" | Game Over", canvas.width/2, canvas.height/2);
-            setTimeout(function () { 
-              location.reload();
-            }, 2000);
-            clearInterval(interval); 
+          if (score > highScore) {
+            highScore = score;
+            localStorage.setItem("highScore", highScore);
+          }
+          ctx.textAlign = "left"; 
+          ctx.font = "30px Arial";
+          ctx.fillStyle = "#000000";
+          ctx.fillText("Game Over", canvas.width/2.35, canvas.height/2);
+          setTimeout(function () { 
+            location.reload();
+          }, 2000);
+          clearInterval(interval); 
         }
     }
     
